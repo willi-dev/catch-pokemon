@@ -8,8 +8,8 @@ const initialState = {
   list: []
 }
 
-const favReducer = (state = initialState, action) => {
+const myPokemonReducer = (state = initialState, action) => {
 
 }
 
-export default favReducer
+export default myPokemonReducer
