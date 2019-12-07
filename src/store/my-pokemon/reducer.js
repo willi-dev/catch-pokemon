@@ -1,3 +1,6 @@
+/**
+ * reducer for my pokemon
+ */
 import {
   CATCH_POKEMON, CATCH_POKEMON_SUCCESS, CATCH_POKEMON_ERROR,
   REMOVE_POKEMON, REMOVE_POKEMON_SUCCESS, REMOVE_POKEMON_ERROR,
@@ -9,52 +12,62 @@ import {
  * initial state of pokemon favorite 
  */
 const initialState = {
-  loading: false,
+  isLoading: false,
+  isError: false,
   error: null,
   list: []
 }
 
+/**
+ * myPokemonReducer
+ * @author willi <https://github.com/willi-dev>
+ * @param {*} state 
+ * @param { type, payload } action 
+ */
 const myPokemonReducer = (state = initialState, action) => {
   switch(action.type) {
     case CATCH_POKEMON:
       return {
         ...state,
-        loading: true,
+        isLoading: true,
+        isError: false,
         error: null
       }
     case CATCH_POKEMON_SUCCESS:
       return {
         ...state,
-        loading: false,
+        isLoading: false,
         list: [...action.payload]
       }
     case CATCH_POKEMON_ERROR:
       return {
         ...state,
-        loading: false,
+        isLoading: false,
+        isError: true,
         error: action.payload
       }
     case REMOVE_POKEMON:
       return {
         ...state,
-        loading: true,
+        isLoading: true,
         error: null,
       }
     case REMOVE_POKEMON_SUCCESS:
       return {
         ...state,
-        loading: false,
+        isLoading: false,
       }
     case REMOVE_POKEMON_ERROR:
       return {
         ...state,
-        loading: false,
+        isLoading: false,
+        isError: true,
         error: action.payload
       }
     case FETCH_MY_LIST:
       return {
         ...state,
-        loading: true,
+        isLoading: true,
         error: null
       }
     case FETCH_MY_LIST_SUCCESS:
@@ -66,7 +79,8 @@ const myPokemonReducer = (state = initialState, action) => {
     case FETCH_MY_LIST_ERROR:
       return {
         ...state,
-        loading: false,
+        isLoading: false,
+        isError: true,
         error: action.payload
       }
     default:

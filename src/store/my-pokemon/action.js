@@ -1,6 +1,6 @@
 /**
  * action for pokemon list
- * 
+ * @author willi <https://github.com/willi-dev>
  */
 import { 
   CATCH_POKEMON, CATCH_POKEMON_SUCCESS, CATCH_POKEMON_ERROR,
