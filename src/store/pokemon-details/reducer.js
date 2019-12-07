@@ -1,3 +1,6 @@
+/**
+ * reducer for pokemon details
+ */
 import { FETCH_DETAIL, FETCH_DETAIL_SUCCESS, FETCH_DETAIL_ERROR } from './actionType'
 
 /**
@@ -5,29 +8,38 @@ import { FETCH_DETAIL, FETCH_DETAIL_SUCCESS, FETCH_DETAIL_ERROR } from './action
  * initial state of pokemon detail
  */
 const initialState = {
-  loading: false,
+  isLoading: false,
+  isError: false,
   error: null,
   detail: {}
 }
 
+/**
+ * detailReducer 
+ * @author willi <https://github.com/willi-dev>
+ * @param {*} state 
+ * @param { type, payload } action 
+ */
 const detailReducer = ( state = initialState, action ) => {
   switch (action.type) {
     case FETCH_DETAIL:
       return {
         ...state,
-        loading: true,
+        isLoading: true,
+        isError: false,
         error: null
       }
     case FETCH_DETAIL_SUCCESS:
       return {
         ...state,
-        loading: false,
+        isLoading: false,
         detail: action.payload
       }
     case FETCH_DETAIL_ERROR:
       return {
         ...state,
-        loading: false,
+        isLoading: false,
+        isError: true,
         error: action.payload
       }  
     default: 
