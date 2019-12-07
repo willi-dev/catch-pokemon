@@ -12,7 +12,10 @@ const initialState = {
   isLoading: false,
   isError: false,
   error: null,
-  list: []
+  list: [],
+  count: 0,
+  hasNext: null,
+  hasPrev: null
 }
 
 /**
@@ -22,19 +25,23 @@ const initialState = {
  * @param { type, payload } action 
  */
 const listReducer = ( state = initialState, action ) => {
-  switch (action.payload) {
+  switch (action.type) {
     case FETCH_LIST:
       return {
         ...state,
         isLoading: true,
         isError: false,
-        error: null
+        error: null,
+        list: []
       }
     case FETCH_LIST_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        list: action.payload
+        list: action.payload.results,
+        count: action.payload.count,
+        hasNext: action.payload.next,
+        hasPrev: action.payload.prev
       }
     case FETCH_LIST_ERROR:
       return {

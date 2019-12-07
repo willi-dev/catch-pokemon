@@ -5,7 +5,7 @@ import detailReducer from './pokemon-details/reducer'
 import myPokemonReducer from './my-pokemon/reducer'
 
 export default combineReducers({ 
-  list: listReducer, 
-  detail: detailReducer,
+  listPokemon: listReducer, 
+  detailPokemon: detailReducer,
   myPokemon: myPokemonReducer
 })
