@@ -27,7 +27,8 @@ const detailReducer = ( state = initialState, action ) => {
         ...state,
         isLoading: true,
         isError: false,
-        error: null
+        error: null,
+        detail: {}
       }
     case FETCH_DETAIL_SUCCESS:
       return {

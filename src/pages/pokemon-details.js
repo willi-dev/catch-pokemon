@@ -2,28 +2,36 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 // import shortid from 'shortid'
 
+import PokemonItem from '../components/pokemon-item'
+
 import { fetchingPokemonDetail } from '../store/pokemon-details/action'
 
 const PokemonDetails = props => {
   const {
     name,
     isLoading,
-    // detailPokemon,
+    detailPokemon,
     fetchingPokemonDetail
   } = props
 
   useEffect(() => {
     fetchingPokemonDetail({name})
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
     <>
+      <p>Pokemon Details</p>
       {
         isLoading && (
           <p>Loading...</p>
         )
       }
-      <p>Pokemon Details</p>
+      {
+        Object.keys(detailPokemon).length > 0 && (
+          <PokemonItem {...detailPokemon} />
+        )
+      }
     </>
   )
 }
