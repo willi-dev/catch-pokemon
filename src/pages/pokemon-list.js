@@ -21,21 +21,22 @@ const PokemonList = props => {
   }
 
   return (
-    <>  
-      <h1>Pokemon List</h1>
+    <>
       {
         isLoading && (
-          <p>loading pokemon</p>
+          <p>loading...</p>
         )
       }
-      {
-        listMonster.map( monster => {
-          return <PokemonListItem key={shortid.generate()} {...monster} />
-        })
-      }
-      <button onClick={(e) => nextClick(e)} disabled={isLoading}>
-        Next Page
-      </button>
+      <div className="flex flex-wrap">
+        {
+          listMonster.map( monster => {
+            return <PokemonListItem key={shortid.generate()} {...monster} />
+          })
+        }
+        <button onClick={(e) => nextClick(e)} disabled={isLoading}>
+          Next Page
+        </button>
+      </div>
     </>
   )
 }

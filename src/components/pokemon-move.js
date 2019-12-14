@@ -2,7 +2,7 @@ import React from 'react'
 
 const styleMoveItem = {
   display: `inline-block`,
-  padding: `5px`,
+  padding: `2px 5px`,
   border: `1px solid #ccc`,
   marginRight: `5px`,
   marginBottom: `5px`,
@@ -10,7 +10,7 @@ const styleMoveItem = {
 }
 
 const PokemonMove = props => (
-  <span style={styleMoveItem}>{props.move}</span>
+  <span className="font-mono text-xs" style={styleMoveItem}>{props.move}</span>
 )
 
 export default PokemonMove

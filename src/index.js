@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import store from './store/index';
-import './index.css';
+import './styles/tailwind.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 const styleTypeItem = {
   display: `inline-block`,
-  padding: `5px`,
+  padding: `2px 5px`,
   border: `1px solid #ccc`,
   marginRight: `5px`,
   marginBottom: `5px`,
@@ -10,7 +10,7 @@ const styleTypeItem = {
 }
 
 const PokemonType = props => (
-  <span style={styleTypeItem}>{props.type}</span>
+  <span className="font-mono text-xs" style={styleTypeItem}>{props.type}</span>
 )
 
 export default PokemonType
