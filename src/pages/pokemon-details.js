@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import PokemonItem from '../components/pokemon-item'
 
 import { fetchingPokemonDetail } from '../store/pokemon-details/action'
+import { catchingPokmeon } from '../store/my-pokemon/action'
 
 const PokemonDetails = props => {
   const {
@@ -28,7 +29,7 @@ const PokemonDetails = props => {
       <div className="flex flex-wrap justify-center">
       {
         Object.keys(detailPokemon).length > 0 && (
-          <PokemonItem {...detailPokemon} />
+          <PokemonItem {...props} />
         )
       }
       </div>
@@ -45,6 +46,9 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = dispatch => ({
   fetchingPokemonDetail: pokemon => {
     dispatch(fetchingPokemonDetail(pokemon))
+  },
+  catchPokemon: pokemon => {
+    dispatch(catchingPokmeon(pokemon))
   }
 })
 

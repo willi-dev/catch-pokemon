@@ -6,15 +6,25 @@ import PokemonMove from './pokemon-move'
 import PokemonType from './pokemon-type'
 import shortid from 'shortid'
 
+/**
+ * catchPokemon
+ */
+const catchPokemon = props => {
+  /**
+   * here process of catch probability
+   */
+  props.catchPokemon(props.detailPokemon)
+}
+
 const PokemonItem = props => (
   <div className="pokemon-item w-full md:w-1/4 wrounded overflow-hidden">
     <div className="m-2 p-5">
-      <PokemonImage src={`https://img.pokemondb.net/artwork/${props.name}.jpg`} alt={props.name}/>
-      <Title text={props.name} />
+      <PokemonImage src={`https://img.pokemondb.net/artwork/${props.detailPokemon.name}.jpg`} alt={props.name}/>
+      <Title text={props.detailPokemon.name} />
       <div className="mb-2">
         <Subtitle text="Types" />
         {
-          props.types.map(typeItem => (
+          props.detailPokemon.types.map(typeItem => (
             <PokemonType key={shortid.generate()} type={typeItem.type.name} />
           ))
         }
@@ -22,13 +32,15 @@ const PokemonItem = props => (
       <div className="mb-2">
         <Subtitle text="Moves" />
         {
-          props.moves.map(moveItem => (
+          props.detailPokemon.moves.map(moveItem => (
             <PokemonMove key={shortid.generate()} move={moveItem.move.name} />
           ))
         }
       </div>
-
-      <button className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
+      <button
+        className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
+        onClick={() => catchPokemon(props)}
+      >
         Catch
       </button>
     </div>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 const MyPokemon = () => {
   return (
@@ -8,4 +9,14 @@ const MyPokemon = () => {
   )
 }
 
-export default MyPokemon
+const mapStateToProps = state => ({
+  listMyPokemon: state.myPokemon.list
+})
+
+const mapDispatchToProps = dispatch => ({
+  fetchListMyPokemon: data => {
+    dispatch()
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyPokemon)
