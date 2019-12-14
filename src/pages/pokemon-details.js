@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-// import shortid from 'shortid'
 
 import PokemonItem from '../components/pokemon-item'
 
@@ -21,17 +20,18 @@ const PokemonDetails = props => {
 
   return (
     <>
-      <p>Pokemon Details</p>
       {
         isLoading && (
           <p>Loading...</p>
         )
       }
+      <div className="flex flex-wrap justify-center">
       {
         Object.keys(detailPokemon).length > 0 && (
           <PokemonItem {...detailPokemon} />
         )
       }
+      </div>
     </>
   )
 }
