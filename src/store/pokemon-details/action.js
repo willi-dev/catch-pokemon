@@ -2,13 +2,26 @@
  * action for pokemon details
  * @author willi <https://github.com/willi-dev>
  */
+import axios from 'axios'
 import { FETCH_DETAIL, FETCH_DETAIL_SUCCESS, FETCH_DETAIL_ERROR } from './actionType'
 
-export const fetchingPokemonDetail = data => {
+const API = process.env.REACT_APP_POKE_API_URL
+
+/**
+ * fetchingPokemonDetail
+ * @param {*} monster 
+ */
+export const fetchingPokemonDetail = pokemon => {
   return async (dispatch) => {
     dispatch(fetchPokemonDetail())
-    dispatch(fetchPokemonDetailSuccess())
-    dispatch(fetchPokemonDetailError())
+    try {
+      const response = await axios.get(`${API}/pokemon/${pokemon.name}`)
+      const { data } = response
+      dispatch(fetchPokemonDetailSuccess(data))
+    } catch (e) {
+      const { data } = e.response
+      dispatch(fetchPokemonDetailError(data))
+    }
   }
 }
 

@@ -1,6 +1,6 @@
 /**
  * action for pokemon list
- * 
+ * @author willi <https://github.com/willi-dev>
  */
 import axios from 'axios'
 import { FETCH_LIST, FETCH_LIST_SUCCESS, FETCH_LIST_ERROR } from './actionType'
