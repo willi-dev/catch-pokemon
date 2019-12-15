@@ -37,7 +37,7 @@ const myPokemonReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        list: [...action.payload]
+        list: [...state.list, {...action.payload}]
       }
     case CATCH_POKEMON_ERROR:
       return {

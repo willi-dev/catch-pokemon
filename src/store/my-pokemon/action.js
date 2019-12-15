@@ -39,9 +39,9 @@ const fetchMyPokemonListError = error => ({
  * @param {*} data 
  */
 export const catchingPokmeon = data => {
-  return async (dispatch) {
+  return async (dispatch) => {
     dispatch(catchPokemon())
-    dispatch(catchPokemonSuccess())
+    dispatch(catchPokemonSuccess(data))
     dispatch(catchPokemonError())
   }
 }
@@ -61,7 +61,7 @@ const catchPokemonError = error => ({
 })
 
 export const removingPokemon = data => {
-  return async (dispatch) {
+  return async (dispatch) => {
     dispatch(removePokemon())
     dispatch(removePokemonSuccess())
     dispatch(removePokemonError())
