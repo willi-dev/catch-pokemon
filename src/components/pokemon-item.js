@@ -7,21 +7,6 @@ import PokemonType from './pokemon-type'
 import shortid from 'shortid'
 
 /**
- * catchPokemon
- */
-const catchPokemon = props => {
-  /**
-   * here process of catch probability
-   */
-  const prob = Math.random() * 100
-  const isCatched = catchProbability(prob)
-  console.log(`${prob} ${isCatched}`)
-  if (isCatched) {
-    props.catchPokemon(props.detailPokemon)
-  }
-}
-
-/**
  * catchProbability
  * return catch probability
  * @param value 
@@ -34,10 +19,24 @@ export const catchProbability = value => {
   return catchStatus
 }
 
+/**
+ * catchPokemon
+ * catch pokemon process
+ * @param {*} props
+ */
+const catchPokemon = props => {
+  const prob = Math.random() * 100
+  const isCatched = catchProbability(prob)
+  console.log(`${prob} ${isCatched}`)
+  if (isCatched) {
+    props.catchPokemon(props.detailPokemon)
+  }
+}
+
 const PokemonItem = props => (
   <div className="pokemon-item w-full md:w-1/4 wrounded overflow-hidden">
     <div className="m-2 p-5">
-      <PokemonImage src={`https://img.pokemondb.net/artwork/${props.detailPokemon.name}.jpg`} alt={props.name}/>
+      <PokemonImage detail src={`https://img.pokemondb.net/artwork/${props.detailPokemon.name}.jpg`} alt={props.name}/>
       <Title text={props.detailPokemon.name} />
       <div className="mb-2">
         <Subtitle text="Types" />
