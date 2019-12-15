@@ -13,7 +13,25 @@ const catchPokemon = props => {
   /**
    * here process of catch probability
    */
-  props.catchPokemon(props.detailPokemon)
+  const prob = Math.random() * 100
+  const isCatched = catchProbability(prob)
+  console.log(`${prob} ${isCatched}`)
+  if (isCatched) {
+    props.catchPokemon(props.detailPokemon)
+  }
+}
+
+/**
+ * catchProbability
+ * return catch probability
+ * @param value 
+ */
+export const catchProbability = value => {
+  let catchStatus = false
+  if (value > 50) {
+    catchStatus = true
+  }
+  return catchStatus
 }
 
 const PokemonItem = props => (
