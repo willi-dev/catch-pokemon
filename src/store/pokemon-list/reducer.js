@@ -15,7 +15,8 @@ const initialState = {
   list: [],
   count: 0,
   hasNext: null,
-  hasPrev: null
+  hasPrev: null,
+  currentPage: 1
 }
 
 /**
@@ -40,7 +41,8 @@ const listReducer = ( state = initialState, action ) => {
         list: [ ...state.list, ...action.payload.results],
         count: action.payload.count,
         hasNext: action.payload.next,
-        hasPrev: action.payload.prev
+        hasPrev: action.payload.prev,
+        currentPage: state.currentPage + 1
       }
     case FETCH_LIST_ERROR:
       return {
