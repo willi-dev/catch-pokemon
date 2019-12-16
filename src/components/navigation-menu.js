@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 const styleNav = {
@@ -11,7 +12,8 @@ const styleNav = {
   borderTop: `1px solid #ccc`
 }
 
-const NavigationMenu = () => {
+const NavigationMenu = props => {
+  const { listMyPokemon } = props
   return (
     <div style={styleNav}>
       <div className="navigation-menu flex flex-wrap justify-center" style={{ height: `4rem` }}>
@@ -22,7 +24,7 @@ const NavigationMenu = () => {
         </div>
         <div className="w-1/2 text-center" style={{ lineHeight: `4rem` }}>
           <Link to="/my-pokemon" className="font-bold">
-            My Pokemon
+            My Pokemon ({listMyPokemon.length})
           </Link>
         </div>
       </div>
@@ -30,4 +32,8 @@ const NavigationMenu = () => {
   )
 }
 
-export default NavigationMenu
+const mapStateToProps = state => ({
+  listMyPokemon: state.myPokemon.list
+})
+
+export default connect(mapStateToProps, null)(NavigationMenu)

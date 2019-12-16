@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import PokemonList from './pages/pokemon-list'
 import PokemonDetails from './pages/pokemon-details'
-import MyPokemon from './pages/my-pokemon'
+import MyPokemonList from './pages/my-pokemon-list'
 import NavigationMenu from './components/navigation-menu'
 
 const stylePage = {
@@ -18,7 +18,7 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={PokemonList}/>
             <Route path="/pokemon/:pokemon" component={PokemonDetails} />
-            <Route path="/my-pokemon" component={MyPokemon} />
+            <Route path="/my-pokemon" component={MyPokemonList} />
           </Switch>
           <NavigationMenu />
         </div>

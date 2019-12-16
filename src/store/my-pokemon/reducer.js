@@ -3,8 +3,7 @@
  */
 import {
   CATCH_POKEMON, CATCH_POKEMON_SUCCESS, CATCH_POKEMON_ERROR,
-  REMOVE_POKEMON, REMOVE_POKEMON_SUCCESS, REMOVE_POKEMON_ERROR,
-  FETCH_MY_LIST, FETCH_MY_LIST_SUCCESS, FETCH_MY_LIST_ERROR
+  REMOVE_POKEMON, REMOVE_POKEMON_SUCCESS, REMOVE_POKEMON_ERROR
 } from './actionType'
 
 /**
@@ -55,28 +54,10 @@ const myPokemonReducer = (state = initialState, action) => {
     case REMOVE_POKEMON_SUCCESS:
       return {
         ...state,
+        list: action.payload,
         isLoading: false,
       }
     case REMOVE_POKEMON_ERROR:
-      return {
-        ...state,
-        isLoading: false,
-        isError: true,
-        error: action.payload
-      }
-    case FETCH_MY_LIST:
-      return {
-        ...state,
-        isLoading: true,
-        error: null
-      }
-    case FETCH_MY_LIST_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        list: action.payload
-      }
-    case FETCH_MY_LIST_ERROR:
       return {
         ...state,
         isLoading: false,
