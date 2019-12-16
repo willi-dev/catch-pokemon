@@ -3,6 +3,7 @@ import  { connect } from 'react-redux'
 import shortid from 'shortid'
 
 import PokemonListItem from '../components/pokemon-list-item'
+import Loading from '../components/loading'
 
 import { fetchingListPokemon } from '../store/pokemon-list/action'
 
@@ -31,7 +32,7 @@ const PokemonList = props => {
 
   return (
     <div className="pokemon-list">
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap mb-16">
         {
           listMonster.map( monster => {
             return <PokemonListItem key={shortid.generate()} {...monster} />
@@ -40,7 +41,7 @@ const PokemonList = props => {
       </div>
       {
         isLoading && (
-          <p>loading...</p>
+          <Loading />
         )
       }
     </div>

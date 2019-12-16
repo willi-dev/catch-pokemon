@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import PokemonItem from '../components/pokemon-item'
+import Loading from '../components/loading'
 
 import { fetchingPokemonDetail } from '../store/pokemon-details/action'
 import { catchingPokmeon } from '../store/my-pokemon/action'
@@ -20,20 +21,20 @@ const PokemonDetails = props => {
   }, [])
 
   return (
-    <>
+    <div style={{ position: `relative`, width: `100%`, height: `100vh` }}>
       {
         isLoading && (
-          <p>Loading...</p>
+          <Loading />
         )
       }
-      <div className="flex flex-wrap justify-center">
+      <div className="flex flex-wrap justify-center mb-16">
       {
         Object.keys(detailPokemon).length > 0 && (
           <PokemonItem {...props} />
         )
       }
       </div>
-    </>
+    </div>
   )
 }
 

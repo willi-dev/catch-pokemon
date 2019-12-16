@@ -7,7 +7,8 @@ import NavigationMenu from './components/navigation-menu'
 
 const stylePage = {
   position: `relative`,
-  marginBottom: `4rem`
+  paddingBottom: `4rem`,
+  minHeight: `100vh`
 }
 
 const App = () => {
