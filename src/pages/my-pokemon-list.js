@@ -22,6 +22,13 @@ const MyPokemonList = props => {
   return (
     <div className="mypokemon-list">
       {
+        listMyPokemon.length === 0 && (
+          <div className="text-center" style={{ width: `100%`, height: `100vh`, position: `absolute`, left: 0, top: 0}}>
+            <h2 className="font-mono">You have no monster...!</h2>
+          </div>
+        )
+      }
+      {
         listMyPokemon.length > 0 && (
           listMyPokemon.map(myPokemon => {
             return <MyPokemonListItem key={shortid.generate()} {...myPokemon} removePokemon={removePokemon} />
