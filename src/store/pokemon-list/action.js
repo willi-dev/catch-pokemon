@@ -12,6 +12,7 @@ const limit = 20
  * @author willi <https://github.com/willi-dev>
  */
 export const fetchingListPokemon = (currentPage = 1) => {
+  console.log(currentPage)
   return async (dispatch) => {
     const offset = (currentPage - 1) * limit
     dispatch(fetchListPokemon())
