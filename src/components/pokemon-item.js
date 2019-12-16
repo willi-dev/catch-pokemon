@@ -22,6 +22,7 @@ export const catchProbability = value => {
 
 const PokemonItem = props => {
   const [isCatched, setIsCatched] = useState(false)
+  const [catchFail, setCatchFail] = useState(false)
   const [customName, setCustomName] = useState('')
 
   const { detailPokemon, catchPokemon } = props
@@ -34,7 +35,10 @@ const PokemonItem = props => {
     const prob = Math.random() * 100
     const catched = catchProbability(prob)
     setIsCatched(catched)
-    console.log(`${prob} ${catched}`)
+    // console.log(`${prob} ${catched}`)
+    if (!catched) {
+      setCatchFail(true)
+    }
   }
 
   const addingToMyPokemon = monster => {
@@ -68,7 +72,7 @@ const PokemonItem = props => {
           }
         </div>
         {
-          !isCatched && (
+          (!isCatched && !catchFail) && (
             <button
               className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
               onClick={() => catchingPokemon()}
@@ -99,6 +103,15 @@ const PokemonItem = props => {
                 <button className="w-full bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4" onClick={() => addingToMyPokemon(detailPokemon)}>
                   Submit
                 </button>
+              </div>
+            </div>
+          )
+        }
+        {
+          catchFail && (
+            <div className="flex flex-wrap mt-4">
+              <div className="w-full p-3">
+                <h2 className="font-mono">Oops, you failed...!</h2>
               </div>
             </div>
           )
