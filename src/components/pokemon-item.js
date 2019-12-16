@@ -34,7 +34,7 @@ const catchPokemon = props => {
 }
 
 const PokemonItem = props => (
-  <div className="pokemon-item w-full md:w-1/4 wrounded overflow-hidden">
+  <div className="pokemon-item w-full md:w-1/3 wrounded overflow-hidden">
     <div className="m-2 p-5">
       <PokemonImage detail src={`https://img.pokemondb.net/artwork/${props.detailPokemon.name}.jpg`} alt={props.name}/>
       <Title text={props.detailPokemon.name} />
