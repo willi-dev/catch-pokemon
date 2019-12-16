@@ -31,14 +31,13 @@ const listReducer = ( state = initialState, action ) => {
         ...state,
         isLoading: true,
         isError: false,
-        error: null,
-        list: []
+        error: null
       }
     case FETCH_LIST_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        list: action.payload.results,
+        list: [ ...state.list, ...action.payload.results],
         count: action.payload.count,
         hasNext: action.payload.next,
         hasPrev: action.payload.prev

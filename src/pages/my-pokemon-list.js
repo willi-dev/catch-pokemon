@@ -5,10 +5,8 @@ import MyPokemonListItem from '../components/my-pokemon-list-item'
 
 const MyPokemonList = props => {
   const { listMyPokemon } = props
-  console.log( props )
   return (
     <div>
-      <p>my pokemon list</p>
       {
         listMyPokemon.length > 0 && (
           listMyPokemon.map(myPokemon => {

@@ -12,32 +12,42 @@ const PokemonList = props => {
   const { isLoading, listMonster } = props // store state
   const { fetchingListPokemon } = props // action
 
-  useEffect(() => {
-    fetchingListPokemon(page)
-  }, [fetchingListPokemon, page])
-
-  const nextClick = (e) => {
+  const handleScroll = async () => {
+    if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return
+    await fetchingListPokemon(page)
     setPage(page + 1)
   }
 
+  useEffect(() => {
+    if (listMonster.length === 0) {
+      const fetchInit = (async () => await fetchingListPokemon(page))
+      setPage(page + 1)
+      fetchInit()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  })
+
   return (
-    <>
-      {
-        isLoading && (
-          <p>loading...</p>
-        )
-      }
+    <div className="pokemon-list">
       <div className="flex flex-wrap">
         {
           listMonster.map( monster => {
             return <PokemonListItem key={shortid.generate()} {...monster} />
           })
         }
-        <button onClick={(e) => nextClick(e)} disabled={isLoading}>
-          Next Page
-        </button>
       </div>
-    </>
+      {
+        isLoading && (
+          <p>loading...</p>
+        )
+      }
+    </div>
   )
 }
 
