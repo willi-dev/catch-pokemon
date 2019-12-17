@@ -4,6 +4,7 @@ import Subtitle from './subtitle'
 import PokemonImage from './pokemon-image'
 import PokemonMove from './pokemon-move'
 import PokemonType from './pokemon-type'
+import Loading from './loading'
 import shortid from 'shortid'
 
 /**
@@ -24,6 +25,7 @@ const PokemonItem = props => {
   const [isCatched, setIsCatched] = useState(false)
   const [catchFail, setCatchFail] = useState(false)
   const [customName, setCustomName] = useState('')
+  const [loadingCatch, setLoadingCatch] = useState(false)
 
   const { detailPokemon, catchPokemon } = props
 
@@ -32,13 +34,17 @@ const PokemonItem = props => {
    * catch pokemon process
    */
   const catchingPokemon = () => {
-    const prob = Math.random() * 100
-    const catched = catchProbability(prob)
-    setIsCatched(catched)
-    // console.log(`${prob} ${catched}`)
-    if (!catched) {
-      setCatchFail(true)
-    }
+    setLoadingCatch(true)
+    setTimeout(() => {
+      const prob = Math.random() * 100
+      const catched = catchProbability(prob)
+      setIsCatched(catched)
+      // console.log(`${prob} ${catched}`)
+      if (!catched) {
+        setCatchFail(true)
+      }
+      setLoadingCatch(false)
+    }, 3000)  
   }
 
   const addingToMyPokemon = monster => {
@@ -74,6 +80,7 @@ const PokemonItem = props => {
         {
           (!isCatched && !catchFail) && (
             <button
+              disabled={loadingCatch}
               className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
               onClick={() => catchingPokemon()}
             >
@@ -81,41 +88,48 @@ const PokemonItem = props => {
             </button>
           )
         }
-        {
-          isCatched && (
-            <div className="flex flex-wrap mt-4">
-              <div className="w-full p-3">
-                <h2 className="font-mono">Yeay, you catched the monster...!</h2>
+        <div className="flex flex-wrap mt-4">
+          {
+            loadingCatch && (
+              <div style={{ position: `relative`, width: `100%`, height: `100px` }}>
+                <Loading />
               </div>
-              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
-                  Your Monster Name
-                </label>
-                <input 
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" 
-                  type="text" 
-                  placeholder="Good Monster"
-                  onChange={(e) => setCustomName(e.target.value) }
-                  />
-                <p className="text-red-500 text-xs italic">Please fill with your custom monster name.</p>
-              </div>
-              <div className="w-full">
-                <button className="w-full bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4" onClick={() => addingToMyPokemon(detailPokemon)}>
-                  Submit
-                </button>
-              </div>
-            </div>
-          )
-        }
-        {
-          catchFail && (
-            <div className="flex flex-wrap mt-4">
+            )
+          }
+          { 
+            isCatched && (
+              <>
+                <div className="w-full p-3">
+                  <h2 className="font-mono">Yeay, you catched the monster...!</h2>
+                </div>
+                <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
+                    Your Monster Name
+                  </label>
+                  <input 
+                    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" 
+                    type="text" 
+                    placeholder="Good Monster"
+                    onChange={(e) => setCustomName(e.target.value) }
+                    />
+                  <p className="text-red-500 text-xs italic">Please fill with your custom monster name.</p>
+                </div>
+                <div className="w-full">
+                  <button className="w-full bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4" onClick={() => addingToMyPokemon(detailPokemon)}>
+                    Submit
+                  </button>
+                </div>
+              </>
+            )
+          }
+          {
+            catchFail && (
               <div className="w-full p-3">
                 <h2 className="font-mono">Oops, you failed...!</h2>
               </div>
-            </div>
-          )
-        }
+            )
+          }
+        </div>
       </div>
     </div>
   )
